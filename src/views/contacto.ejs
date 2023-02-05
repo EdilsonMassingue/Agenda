@@ -1,0 +1,79 @@
+<%- include('includes/head') %> <%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="cl-lg-8 my-5">
+      <h1 class="text-center">REGISTRAR CONTACTOS</h1>
+      <p class="text-center lead">
+        Prenca os campos abaixo para registrar ou editar contactos
+      </p>
+
+      <%- include('includes/messages') %>
+
+      <div class="row my-2">
+        <div class="col-lg">
+          <h4>Registrar</h4>
+          
+          
+          <% if(contact._id) { %>
+            <form action="/contacto/index/<%= contact._id %>" method="post">
+          <% }else { %>
+            <form action="/contacto/register" method="post">
+          <% } %>
+            
+            
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+            <div class="mb-3">
+              <label for="exampleInputName" class="form-label">Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputName"
+                aria-describedby="emailHelp"
+                name="nome"
+                value="<%= contact.nome %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputSurname" class="form-label"
+                >Sobrenome</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputSurname"
+                name="sobrenome"
+                value="<%= contact.sobrenome %>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail" class="form-label">Email</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="exampleInputEmail"
+                name="email"
+                value="<%= contact.email %>"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail" class="form-label">Telefone</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="exampleInputEmail"
+                name="telefone"
+                value="<%= contact.telefone%>"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>
